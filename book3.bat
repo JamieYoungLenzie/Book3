@@ -1,0 +1,1 @@
+"%JAVA_HOME%\bin\java" -jar bin\\book3-1.0.jar --book3.data.folder=data --book3.user.folder=usr --server.port=8081 --logging.file=logs\\book3-app.log --logging.level.root=INFO --logging.level.com.sas.memex=INFO

@@ -1,0 +1,20 @@
+# React / Node
+node_modules/
+build/
+dist/
+.env
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+target/
+.mvn/
+mvnw
+mvnw.cmd
+
+# General
+.DS_Store
+.idea/
+*.iml

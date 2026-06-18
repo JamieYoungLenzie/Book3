@@ -1,0 +1,1 @@
+docker run -p 8081:8081 -v /home/mtljyo/book3/data:/opt/book3/data -v /home/mtljyo/book3/logs:/opt/book3/logs -v /home/mtljyo/book3/usr:/opt/book3/usr book3-app

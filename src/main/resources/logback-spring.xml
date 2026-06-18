@@ -1,0 +1,30 @@
+<configuration>
+
+    <contextName>book3</contextName>
+    
+    <springProperty scope="context" name="logfile" source="logging.file"/>
+    <springProperty scope="context" name="rootlevel" source="logging.level.root"/>
+    <springProperty scope="context" name="packagelevel" source="logging.level.com.sas.memex"/>
+
+    <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%contextName  %logger{10} %d{ISO8601} [%t] %-5p %c - %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>${logfile}</file>
+        <encoder>
+            <pattern>%contextName  %logger{10} %d{ISO8601} [%t] %-5p %c - %m%n</pattern>
+        </encoder>
+    </appender> 	
+
+    <logger name="com.sas.memex" level="${packagelevel}" additivity="false">
+        <appender-ref ref="FileAppender"/>
+    </logger>
+	
+    <root level="${logging.level.root}">
+        <appender-ref ref="ConsoleAppender"/>
+    </root>
+
+</configuration>

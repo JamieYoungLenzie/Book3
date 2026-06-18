@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Spring Boot App",
+            "request": "launch",
+            "mainClass": "com.sas.memex.book3.Main",
+            "projectName": "book3"
+        },
+        {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Launch React in Edge",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}/src/main/frontend",
+            "runtimeExecutable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+            "preLaunchTask": "Start React"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug Full Stack",
+            "configurations": ["Launch Spring Boot App", "Launch React in Edge"],
+            "stopAll": true
+        }
+    ]
+}
