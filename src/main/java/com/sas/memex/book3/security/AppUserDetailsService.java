@@ -5,7 +5,6 @@ import com.sas.memex.book3.model.AppUser;
 import com.sas.memex.book3.service.AppUserService;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -22,8 +21,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AppUserDetailsService implements UserDetailsService {
     
-    @Autowired
-    private AppUserService appUserService;
+    private final AppUserService appUserService;
+
+    public AppUserDetailsService(AppUserService appUserService) {
+        this.appUserService = appUserService;
+    }
     
     /**
      * Loads user details by username from the users.xml file.
@@ -36,27 +38,18 @@ public class AppUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) {
-        
-        // User implements UserDetails, so we can return it.
-        User user = null;
-        
-        try {          
-            // Fetch the AppUser object from the service (loads from users.xml)  
-            AppUser appUser = appUserService.getUserByUsername(userName);
+        try {
+            AppUser appUser = appUserService.findUserByUsername(userName)
+                    .orElseThrow(() -> new CustomException("User not found: " + userName));
 
-            // Create a list of authorities (roles) for this user
             List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority(appUser.getRole()));
 
-            // Create a Spring Security User object with username, password, and authorities
-            // This is returned to the authentication manager for password verification
-            user = new User(appUser.getUsername(), appUser.getPassword(), authorities);           
-            
+            return new User(appUser.getUsername(), appUser.getPassword(), authorities);
+        } catch (CustomException ex) {
+            throw ex;
         } catch (Exception ex) {
-             throw new CustomException(ex);
+            throw new CustomException(ex);
         }
-        
-        return user;        
     }
-    
 }
