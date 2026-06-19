@@ -10,21 +10,22 @@ import org.springframework.stereotype.Service;
 public class WorldGeneratorService implements IWorldGeneratorService {
 
     Logger logger = LoggerFactory.getLogger(WorldGeneratorService.class);
-    
+
     private final DiceService diceService;
-    
-    private final String[] upp = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
-    private final String[] starport = {"", "", "A", "A", "A", "B", "B", "C", "C", "D", "E", "E", "X"};
+
+    private final String[] upp = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G",
+            "H", "I", "J" };
+    private final String[] starport = { "", "", "A", "A", "A", "B", "B", "C", "C", "D", "E", "E", "X" };
 
     public WorldGeneratorService(DiceService diceService) {
         this.diceService = diceService;
     }
-    
+
     @Override
     public World generate() {
 
         logger.trace("Enter WorldGeneratorService.generate");
-        
+
         World world = new World();
 
         world.setName("Unknown");
@@ -38,11 +39,11 @@ public class WorldGeneratorService implements IWorldGeneratorService {
         world.setPopulation(generatePopulation());
         world.setGovernment(generateGovernment(world.getPopulation()));
         world.setLawLevel(generateLawLevel(world.getGovernment()));
-        world.setTechLevel(generateTechLevel(world.getStarport(), 
-                world.getSize(), 
-                world.getAtmosphere(), 
-                world.getHydrosphere(), 
-                world.getGovernment(), 
+        world.setTechLevel(generateTechLevel(world.getStarport(),
+                world.getSize(),
+                world.getAtmosphere(),
+                world.getHydrosphere(),
+                world.getPopulation(),
                 world.getGovernment()));
         world.setUpp(generateUpp(world));
 
@@ -68,7 +69,7 @@ public class WorldGeneratorService implements IWorldGeneratorService {
     }
 
     private int generatePopulation() {
-        return diceService.twoD6()- 2;
+        return diceService.twoD6() - 2;
     }
 
     private int generateGovernment(int pop) {
@@ -141,7 +142,7 @@ public class WorldGeneratorService implements IWorldGeneratorService {
         }
 
         techLevel = (pop <= 0) ? 0 : techLevel;
-        
+
         return (techLevel < 0) ? 0 : techLevel;
     }
 
@@ -169,8 +170,7 @@ public class WorldGeneratorService implements IWorldGeneratorService {
                 upp[world.getPopulation()],
                 upp[world.getGovernment()],
                 upp[world.getLawLevel()],
-                upp[world.getTechLevel()]
-        );
+                upp[world.getTechLevel()]);
         return profile;
     }
 }
