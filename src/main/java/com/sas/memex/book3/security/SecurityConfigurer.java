@@ -1,7 +1,6 @@
 package com.sas.memex.book3.security;
 
 import com.sas.memex.book3.filters.JwtRequestFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,11 +17,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfigurer {
 
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+    private final JwtRequestFilter jwtRequestFilter;
+    private final AppUserDetailsService appUserDetailsService;
 
-    @Autowired
-    private AppUserDetailsService appUserDetailsService;
+    public SecurityConfigurer(JwtRequestFilter jwtRequestFilter, AppUserDetailsService appUserDetailsService) {
+        this.jwtRequestFilter = jwtRequestFilter;
+        this.appUserDetailsService = appUserDetailsService;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

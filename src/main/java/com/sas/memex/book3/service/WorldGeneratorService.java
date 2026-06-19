@@ -4,7 +4,6 @@ import com.sas.memex.book3.interfaces.IWorldGeneratorService;
 import com.sas.memex.book3.model.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +16,6 @@ public class WorldGeneratorService implements IWorldGeneratorService {
     private final String[] upp = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
     private final String[] starport = {"", "", "A", "A", "A", "B", "B", "C", "C", "D", "E", "E", "X"};
 
-    @Autowired
     public WorldGeneratorService(DiceService diceService) {
         this.diceService = diceService;
     }
