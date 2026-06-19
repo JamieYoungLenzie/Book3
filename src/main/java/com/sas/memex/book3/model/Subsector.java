@@ -6,9 +6,7 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
 @XmlRootElement(name="Subsector")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Subsector {

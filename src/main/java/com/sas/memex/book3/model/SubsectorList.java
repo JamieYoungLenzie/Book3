@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubsectorList {
     
-    private final List<SubsectorListItem> _items = new ArrayList<SubsectorListItem>();
+    private final List<SubsectorListItem> items = new ArrayList<SubsectorListItem>();
     
     public SubsectorList() {
         
     }
     
     public List<SubsectorListItem> getItems() {
-        return _items;
+        return items;
     }
 }

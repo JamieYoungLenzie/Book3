@@ -17,8 +17,8 @@ public class SubsectorGeneratorService implements ISubsectorGeneratorService {
     
     Logger logger = LoggerFactory.getLogger(SubsectorGeneratorService.class);
 
-    public SubsectorGeneratorService(WorldGeneratorService worldGeneratorService, DiceService diceService, Subsector subsector) {
-        this.subsector = subsector;
+    public SubsectorGeneratorService(WorldGeneratorService worldGeneratorService, DiceService diceService) {
+        this.subsector = new Subsector();
         this.worldGeneratorService = worldGeneratorService;
         this.diceService = diceService;
     }
