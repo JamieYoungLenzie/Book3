@@ -7,14 +7,14 @@ import com.sas.memex.book3.helper.Sanitise;
 import com.sas.memex.book3.model.Subsector;
 import java.io.File;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 @Service
 public class LoadSaveService implements ILoadSaveService {
 
     private final String folder;
 
-    // Autowired unnecessary with single constructor.
-    public LoadSaveService(String dataFolder) {
+    public LoadSaveService(@Qualifier("dataFolder") String dataFolder) {
         folder = dataFolder;
     }
     
@@ -37,7 +37,7 @@ public class LoadSaveService implements ILoadSaveService {
         try {
             if (Sanitise.isFilename(subsectorName)) {
                 String path = String.format("%s%s%s.xml", folder, File.separator, subsectorName);
-                return Marshal.unmarshall(Subsector.class, path);
+                return Marshal.unmarshal(Subsector.class, path);
             } else {
                 throw new IllegalArgumentException(String.format("Invalid argument: %s", subsectorName));
             }

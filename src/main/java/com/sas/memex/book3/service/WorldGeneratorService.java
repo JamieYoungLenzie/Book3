@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WorldGeneratorService implements IWorldGeneratorService {
 
-    Logger logger = LoggerFactory.getLogger(WorldGeneratorService.class);
+    private static final Logger logger = LoggerFactory.getLogger(WorldGeneratorService.class);
 
     private final DiceService diceService;
 
@@ -31,7 +31,6 @@ public class WorldGeneratorService implements IWorldGeneratorService {
         world.setName("Unknown");
         world.setLocation("0000");
 
-        // Make a builder pattern?
         world.setStarport(generateStarport());
         world.setSize(generateSize());
         world.setAtmosphere(generateAtmosphere(world.getSize()));

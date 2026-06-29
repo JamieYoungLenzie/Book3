@@ -12,10 +12,10 @@ public class Marshal {
 
     public static <T> void marshal(T object, String filename) {
         if (object == null) {
-            throw new IllegalArgumentException("Object cannot be null");
+            throw new CustomException(new IllegalArgumentException("Object cannot be null"));
         }
         if (filename == null || filename.trim().isEmpty()) {
-            throw new IllegalArgumentException("Filename cannot be null or empty");
+            throw new CustomException(new IllegalArgumentException("Filename cannot be null or empty"));
         }
 
         try {
@@ -32,15 +32,15 @@ public class Marshal {
     }
 
     public static Subsector unmarshal(String filename) {
-        return unmarshall(Subsector.class, filename);
+        return unmarshal(Subsector.class, filename);
     }
 
-    public static <T> T unmarshall(Class<T> clazz, String filename) {
+    public static <T> T unmarshal(Class<T> clazz, String filename) {
         if (clazz == null) {
-            throw new IllegalArgumentException("Class cannot be null");
+            throw new CustomException(new IllegalArgumentException("Class cannot be null"));
         }
         if (filename == null || filename.trim().isEmpty()) {
-            throw new IllegalArgumentException("Filename cannot be null or empty");
+            throw new CustomException(new IllegalArgumentException("Filename cannot be null or empty"));
         }
 
         try {

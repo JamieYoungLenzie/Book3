@@ -19,7 +19,7 @@ public class MarshalServiceTest {
 
     @Test
     public void testUnmarshallB() throws Exception {
-        Subsector result = Marshal.unmarshall(Subsector.class, "C:\\book3-app\\data\\Asgard.xml");
+        Subsector result = Marshal.unmarshal(Subsector.class, "C:\\book3-app\\data\\Asgard.xml");
         assertEquals(3, result.getWorlds().size());
         assertEquals("Asgard", result.getName());
     }

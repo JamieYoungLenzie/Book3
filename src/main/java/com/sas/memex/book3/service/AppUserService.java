@@ -29,7 +29,7 @@ public class AppUserService implements IAppUserService {
     public AppUsers loadUsers() {
         try {
             Path path = folderPath.resolve("users.xml");
-            return Marshal.unmarshall(AppUsers.class, path.toString());
+            return Marshal.unmarshal(AppUsers.class, path.toString());
         } catch (Exception ex) {
             throw new CustomException(ex);
         }
