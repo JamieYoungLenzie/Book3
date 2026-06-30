@@ -48,11 +48,5 @@ public class SubsectorGeneratorServiceDummy implements ISubsectorGeneratorServic
         local.getWorlds().add(mars);
         
         return local;
-    }
-
-    @Override
-    public void print() {
-        //TODO
-    }
-    
+    }    
 }

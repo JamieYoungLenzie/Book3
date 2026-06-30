@@ -1,0 +1,8 @@
+<users>
+  <user>
+    <id>1</id>
+    <username>system</username>
+    <password>test</password>
+    <role>ROLE_ADMIN</role>
+  </user>
+</users>

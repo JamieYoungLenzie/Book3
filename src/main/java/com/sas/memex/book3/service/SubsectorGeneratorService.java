@@ -10,15 +10,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SubsectorGeneratorService implements ISubsectorGeneratorService {
-
-    private final Subsector subsector;
+   
     private final WorldGeneratorService worldGeneratorService;
     private final DiceService diceService;
     
-    Logger logger = LoggerFactory.getLogger(SubsectorGeneratorService.class);
+    private static final Logger logger = LoggerFactory.getLogger(SubsectorGeneratorService.class);
 
     public SubsectorGeneratorService(WorldGeneratorService worldGeneratorService, DiceService diceService) {
-        this.subsector = new Subsector();
         this.worldGeneratorService = worldGeneratorService;
         this.diceService = diceService;
     }
@@ -32,9 +30,12 @@ public class SubsectorGeneratorService implements ISubsectorGeneratorService {
     @Override
     public Subsector generate(Density density) {
 
+        Subsector subsector;
+
         logger.trace("Enter SubsectorGeneratorService.generate");
 
         try {
+            subsector = new Subsector();
             subsector.getWorlds().clear();
             
             for (int n = 1; n < 9; n++) {
@@ -55,9 +56,9 @@ public class SubsectorGeneratorService implements ISubsectorGeneratorService {
         return subsector;
     }
 
-    private Boolean worldExists(Density density) {
+    private boolean worldExists(Density density) {
 
-        Boolean exists = false;
+        boolean exists = false;
         int roll = diceService.oneD6();
 
         switch (density) {
@@ -79,12 +80,5 @@ public class SubsectorGeneratorService implements ISubsectorGeneratorService {
         }
 
         return exists;
-    }
-
-    @Override
-    public void print() {
-        for (World world : subsector.getWorlds()) {
-            System.out.println(world.getLocation() + "\t" + world.getUpp());
-        }
     }
 }

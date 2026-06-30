@@ -5,5 +5,4 @@ import com.sas.memex.book3.service.SubsectorGeneratorService;
 
 public interface ISubsectorGeneratorService {
     Subsector generate(SubsectorGeneratorService.Density density);
-    void print();    
 }
